@@ -26,18 +26,20 @@
         self.minimumDate = [self.dateFormatter dateFromString:@"20/09/2012"];
 
         self.disabledDates = @[
-                [self.dateFormatter dateFromString:@"05/01/2013"],
-                [self.dateFormatter dateFromString:@"06/01/2013"],
-                [self.dateFormatter dateFromString:@"07/01/2013"]
+                [self.dateFormatter dateFromString:@"05/05/2014"],
+                [self.dateFormatter dateFromString:@"06/06/2014"],
+                [self.dateFormatter dateFromString:@"07/07/2014"]
         ];
 
         calendar.onlyShowCurrentMonth = NO;
         calendar.adaptHeightToNumberOfWeeksInMonth = YES;
-
+        calendar.multiSelectionOn = NO;
+        
         calendar.frame = CGRectMake(10, 10, 300, 320);
         [self.view addSubview:calendar];
 
         self.dateLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, CGRectGetMaxY(calendar.frame) + 4, self.view.bounds.size.width, 24)];
+
         [self.view addSubview:self.dateLabel];
 
         self.view.backgroundColor = [UIColor whiteColor];
@@ -101,7 +103,19 @@
 }
 
 - (void)calendar:(CKCalendarView *)calendar didSelectDate:(NSDate *)date {
-    self.dateLabel.text = [self.dateFormatter stringFromDate:date];
+    if (self.calendar.multiSelectionOn) {
+        self.dateLabel.text = @"";
+        [self.dateLabel setNumberOfLines:[self.calendar.selectedDateArray count]];
+        for (NSDate *date in self.calendar.selectedDateArray ) {
+            self.dateLabel.text = [self.dateLabel.text stringByAppendingFormat:@"%@\n",[self.dateFormatter stringFromDate:date]];
+        }
+        [self.dateLabel sizeToFit];
+
+    }
+    else
+    {
+        self.dateLabel.text = [self.dateFormatter stringFromDate:date];
+    }
 }
 
 - (BOOL)calendar:(CKCalendarView *)calendar willChangeToMonth:(NSDate *)date {
