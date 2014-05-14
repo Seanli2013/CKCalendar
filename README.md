@@ -1,3 +1,12 @@
+by Xiang LI,
+multiple selection feature added.
+
+已增加了多选的功能
+下一步增加汉化功能
+
+---
+
+
 CKCalendar
 ==========
 
