@@ -33,8 +33,15 @@
 
         calendar.onlyShowCurrentMonth = NO;
         calendar.adaptHeightToNumberOfWeeksInMonth = YES;
-        calendar.multiSelectionOn = NO;
-        
+        calendar.multiSelectionOn = YES;
+        NSArray *datesPreSelected = @[
+                                      [self.dateFormatter dateFromString:@"06/05/2014"],
+                                      [self.dateFormatter dateFromString:@"08/05/2014"],
+                                      [self.dateFormatter dateFromString:@"10/05/2014"]
+                                      ];
+
+        [calendar setMultiSelctionForDays:datesPreSelected];
+
         calendar.frame = CGRectMake(10, 10, 300, 320);
         [self.view addSubview:calendar];
 

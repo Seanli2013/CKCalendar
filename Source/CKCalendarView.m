@@ -215,13 +215,19 @@
         [dateButton addTarget:self action:@selector(_dateButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
         [dateButtons addObject:dateButton];
     }
-    self.dateButtons = dateButtons;
-
+    self.dateButtons = dateButtons;    
     // initialize the thing
     self.monthShowing = [NSDate date];
     [self _setDefaultStyle];
     
     [self layoutSubviews]; // TODO: this is a hack to get the first month to show properly
+}
+
+- (void)setMultiSelctionForDays:(NSArray *)dateOfDays
+{
+    if (dateOfDays) {
+        self.selectedDateArray = [[NSMutableArray alloc] initWithArray:dateOfDays];
+    }
 }
 
 - (id)initWithStartDay:(CKCalendarStartDay)firstDay frame:(CGRect)frame {

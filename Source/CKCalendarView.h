@@ -14,6 +14,8 @@
 // ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
 // OTHER DEALINGS IN THE SOFTWARE.
 //
+// Update:
+// add multiSelection feature by Xiang LI
 
 @protocol CKCalendarDelegate;
 
@@ -45,6 +47,8 @@ typedef enum {
 @property (nonatomic) BOOL adaptHeightToNumberOfWeeksInMonth;
 @property (nonatomic) BOOL multiSelectionOn;
 @property (nonatomic, strong, readonly) NSMutableArray *selectedDateArray;
+// multi selection configuration, array of NSDate
+- (void)setMultiSelctionForDays:(NSArray *)dateOfDays;
 
 @property (nonatomic, weak) id<CKCalendarDelegate> delegate;
 
@@ -69,6 +73,8 @@ typedef enum {
 
 @end
 
+
+
 @protocol CKCalendarDelegate <NSObject>
 
 @optional
@@ -82,5 +88,4 @@ typedef enum {
 - (void)calendar:(CKCalendarView *)calendar didChangeToMonth:(NSDate *)date;
 
 - (void)calendar:(CKCalendarView *)calendar didLayoutInRect:(CGRect)frame;
-
 @end
